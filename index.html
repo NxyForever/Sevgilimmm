@@ -12,48 +12,48 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             overflow-y: auto; padding-top: 20px; padding-bottom: 20px;
             
-            /* ARKA PLAN FOTOĞRAFI AYARLARI */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('IMG_3163.jpeg');
+            /* ARKA PLAN FOTOĞRAFI */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('IMG_3163.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
         .card { 
-            /* KART ARTIK ÇOK DAHA SAYDAM (BUZLU CAM EFEKTİ) */
-            background: rgba(255, 255, 255, 0.25); /* Beyazlık %25'e düşürüldü */
+            /* EKSTRA SAYDAM BUZLU CAM EFEKTİ */
+            background: rgba(255, 255, 255, 0.1); /* Neredeyse tamamen şeffaf */
             padding: 30px; 
             border-radius: 30px; 
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); 
             text-align: center; width: 85%; max-width: 400px; 
             position: relative; z-index: 10;
             margin: auto;
-            backdrop-filter: blur(15px); /* Bulanıklık arttırıldı, yazılar netleşti */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* İncecik bir cam çerçeve */
+            /* Arkadaki fotoğrafın netliğini korurken yazıyı okutur */
+            backdrop-filter: blur(5px); 
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        /* YAZILARIN OKUNABİLİRLİĞİ İÇİN GÖLGE */
+        /* YAZILARIN NET GÖRÜNMESİ İÇİN KUVVETLİ GÖLGE */
         h1 { 
-            color: #d63384; 
-            font-size: 26px; font-weight: 700;
+            color: #ffffff; /* Yazıyı beyaza çevirdik ki camda parlasın */
+            font-size: 26px; font-weight: 800;
             line-height: 1.3; margin-bottom: 20px; 
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
         }
         p { 
-            color: #222; /* Neredeyse siyah */
-            font-size: 18px; font-weight: 500;
+            color: #ffffff;
+            font-size: 18px; font-weight: 600;
             font-style: italic; margin-bottom: 25px; 
-            text-shadow: 1px 1px 3px rgba(255,255,255,0.7);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
         }
         .btns { display: flex; justify-content: center; gap: 20px; height: 50px; position: relative; margin-bottom: 25px;}
-        button { padding: 12px 30px; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
-        button:active { transform: scale(0.95); }
+        button { padding: 12px 30px; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         #yesBtn { background-color: #ff4d6d; color: white; }
-        #noBtn { background-color: #e9ecef; color: #495057; position: absolute; left: 55%; transition: 0.3s ease; }
+        #noBtn { background-color: #f8f9fa; color: #333; position: absolute; left: 55%; transition: 0.3s ease; }
         #success { display: none; padding-bottom: 20px; }
-        .gift { font-size: 60px; margin-top: 20px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+        .gift { font-size: 60px; margin-top: 20px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); }
         
-        /* Video Alanı */
-        .video-container { margin-top: 25px; border-radius: 15px; overflow: hidden; height: 100px; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        /* Video Alanı (Site İçinde Tutma Ayarı) */
+        .video-container { margin-top: 25px; border-radius: 15px; overflow: hidden; height: 80px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
     </style>
 </head>
 <body>
@@ -69,17 +69,17 @@
         </div>
 
         <div id="success">
-            <h1>Seni Çok Seviyorumm Karımmmmm 💐</h1>
-            <p>Sevgililer Günümüz Kutlu Olsunnn  İyiki benimsin :)</p>
+            <h1>Seni Çok Seviyorumm 💐</h1>
+            <p>Sevgililer Günümüz Kutlu Olsunnn. İyiki benimsin :)</p>
             <div class="gift">🎁</div>
         </div>
 
         <div class="video-container">
-            <iframe width="100%" height="100" 
-                src="https://www.youtube.com/embed/Ne3uIrZaWUY" 
+            <iframe width="100%" height="80" 
+                src="https://www.youtube.com/embed/Ne3uIrZaWUY?rel=0&modestbranding=1&playsinline=1" 
                 title="Sezen Aksu" frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen style="border-radius:15px;">
+                allowfullscreen>
             </iframe>
         </div>
     </div>
@@ -90,18 +90,12 @@
         const ask = document.getElementById('ask');
         const success = document.getElementById('success');
 
-        // Hayır butonu kaçma mantığı
         const move = () => {
-            const card = document.querySelector('.card');
             const maxX = window.innerWidth - no.offsetWidth - 20;
             const maxY = window.innerHeight - no.offsetHeight - 20;
-
-            const newX = Math.random() * maxX;
-            const newY = Math.random() * maxY;
-
             no.style.position = 'fixed';
-            no.style.left = Math.max(10, newX) + 'px';
-            no.style.top = Math.max(10, newY) + 'px';
+            no.style.left = Math.max(10, Math.random() * maxX) + 'px';
+            no.style.top = Math.max(10, Math.random() * maxY) + 'px';
             no.style.zIndex = '1000';
         };
 
@@ -111,24 +105,12 @@
         yes.addEventListener('click', () => {
             ask.style.display = 'none';
             success.style.display = 'block';
-            
-            // Konfeti Yağmuru
             var duration = 4 * 1000;
             var end = Date.now() + duration;
-
             (function frame() {
-              confetti({
-                particleCount: 5, angle: 60, spread: 55, origin: { x: 0 },
-                colors: ['#ff4d6d', '#ffccd5', '#d63384']
-              });
-              confetti({
-                particleCount: 5, angle: 120, spread: 55, origin: { x: 1 },
-                colors: ['#ff4d6d', '#ffccd5', '#d63384']
-              });
-
-              if (Date.now() < end) {
-                requestAnimationFrame(frame);
-              }
+              confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff4d6d', '#ffffff'] });
+              confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff4d6d', '#ffffff'] });
+              if (Date.now() < end) requestAnimationFrame(frame);
             }());
         });
     </script>
