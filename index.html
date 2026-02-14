@@ -21,29 +21,29 @@
         }
         .card { 
             /* EKSTRA SAYDAM BUZLU CAM EFEKTİ */
-            background: rgba(255, 255, 255, 0.1); /* Neredeyse tamamen şeffaf */
+            background: rgba(255, 255, 255, 0.1); /* Neredeyse tamamen şeffaf (%10 beyazlık) */
             padding: 30px; 
             border-radius: 30px; 
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); 
             text-align: center; width: 85%; max-width: 400px; 
             position: relative; z-index: 10;
             margin: auto;
-            /* Arkadaki fotoğrafın netliğini korurken yazıyı okutur */
-            backdrop-filter: blur(5px); 
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            /* Arkadaki fotoğrafı bulanıklaştırarak cam efekti verir */
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.2); /* İncecik, şık bir çerçeve */
         }
-        /* YAZILARIN NET GÖRÜNMESİ İÇİN KUVVETLİ GÖLGE */
+        /* YAZILARIN NET GÖRÜNMESİ İÇİN BEYAZ RENK VE KUVVETLİ GÖLGE */
         h1 { 
-            color: #ffffff; /* Yazıyı beyaza çevirdik ki camda parlasın */
+            color: #ffffff; /* Yazıyı beyaza çevirdik */
             font-size: 26px; font-weight: 800;
             line-height: 1.3; margin-bottom: 20px; 
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Güçlü siyah gölge */
         }
         p { 
-            color: #ffffff;
+            color: #ffffff; /* Yazıyı beyaza çevirdik */
             font-size: 18px; font-weight: 600;
             font-style: italic; margin-bottom: 25px; 
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.8); /* Güçlü siyah gölge */
         }
         .btns { display: flex; justify-content: center; gap: 20px; height: 50px; position: relative; margin-bottom: 25px;}
         button { padding: 12px 30px; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
@@ -52,7 +52,7 @@
         #success { display: none; padding-bottom: 20px; }
         .gift { font-size: 60px; margin-top: 20px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); }
         
-        /* Video Alanı (Site İçinde Tutma Ayarı) */
+        /* Video Alanı */
         .video-container { margin-top: 25px; border-radius: 15px; overflow: hidden; height: 80px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
     </style>
 </head>
@@ -76,7 +76,7 @@
 
         <div class="video-container">
             <iframe width="100%" height="80" 
-                src="https://www.youtube.com/embed/Ne3uIrZaWUY?rel=0&modestbranding=1&playsinline=1" 
+                src="https://www.youtube.com/embed/Ne3uIrZaWUY?si=6rqhFg06f79vngfq&playsinline=1" 
                 title="Sezen Aksu" frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
