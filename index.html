@@ -3,57 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nilay'a Özel Sürpriz</title>
+    <title>Nilay'a Özel</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         body { 
             margin: 0; padding: 0; min-height: 100vh; 
             display: flex; justify-content: center; align-items: center; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            overflow-y: auto; padding-top: 20px; padding-bottom: 20px;
+            overflow-x: hidden;
             
-            /* ARKA PLAN FOTOĞRAFI */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('IMG_3163.jpeg');
+            /* ARKA PLAN - FOTOĞRAFIN NETLİĞİ İÇİN FİLTREYİ AZALTTIK */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('IMG_3163.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
         .card { 
-            /* EKSTRA SAYDAM BUZLU CAM EFEKTİ */
-            background: rgba(255, 255, 255, 0.1); /* Neredeyse tamamen şeffaf (%10 beyazlık) */
-            padding: 30px; 
+            /* ULTRA SAYDAM CAM (BEYAZLIK %5) */
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 25px; 
             border-radius: 30px; 
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); 
-            text-align: center; width: 85%; max-width: 400px; 
+            text-align: center; width: 85%; max-width: 380px; 
             position: relative; z-index: 10;
-            margin: auto;
-            /* Arkadaki fotoğrafı bulanıklaştırarak cam efekti verir */
-            backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.2); /* İncecik, şık bir çerçeve */
+            /* BULANIKLIĞI ÇOK AZALTTIK Kİ FOTOĞRAF NET GÖRÜNSÜN */
+            backdrop-filter: blur(3px); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        /* YAZILARIN NET GÖRÜNMESİ İÇİN BEYAZ RENK VE KUVVETLİ GÖLGE */
+        /* YAZILARIN NETLİĞİ İÇİN ÖZEL GÖLGE */
         h1 { 
-            color: #ffffff; /* Yazıyı beyaza çevirdik */
-            font-size: 26px; font-weight: 800;
-            line-height: 1.3; margin-bottom: 20px; 
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Güçlü siyah gölge */
+            color: #ffffff; 
+            font-size: 24px; font-weight: 900;
+            margin-bottom: 15px; 
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
         }
         p { 
-            color: #ffffff; /* Yazıyı beyaza çevirdik */
-            font-size: 18px; font-weight: 600;
-            font-style: italic; margin-bottom: 25px; 
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.8); /* Güçlü siyah gölge */
+            color: #ffffff;
+            font-size: 17px; font-weight: 700;
+            margin-bottom: 20px; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
         }
-        .btns { display: flex; justify-content: center; gap: 20px; height: 50px; position: relative; margin-bottom: 25px;}
-        button { padding: 12px 30px; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        #yesBtn { background-color: #ff4d6d; color: white; }
-        #noBtn { background-color: #f8f9fa; color: #333; position: absolute; left: 55%; transition: 0.3s ease; }
-        #success { display: none; padding-bottom: 20px; }
-        .gift { font-size: 60px; margin-top: 20px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); }
+        .btns { display: flex; justify-content: center; gap: 15px; height: 45px; position: relative; }
+        button { padding: 10px 25px; border: none; border-radius: 50px; font-size: 15px; font-weight: bold; cursor: pointer; }
+        #yesBtn { background-color: #ff4d6d; color: white; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4); }
+        #noBtn { background-color: rgba(255,255,255,0.9); color: #333; position: absolute; left: 55%; }
+        #success { display: none; }
+        .gift { font-size: 50px; margin-top: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); }
         
-        /* Video Alanı */
-        .video-container { margin-top: 25px; border-radius: 15px; overflow: hidden; height: 80px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+        /* VIDEO SİTE İÇİNDE ÇALIŞMA AYARI */
+        .video-container { margin-top: 20px; border-radius: 15px; overflow: hidden; height: 80px; }
     </style>
 </head>
 <body>
@@ -70,15 +69,14 @@
 
         <div id="success">
             <h1>Seni Çok Seviyorumm 💐</h1>
-            <p>Sevgililer Günümüz Kutlu Olsunnn. İyiki benimsin :)</p>
+            <p>İyiki benimsin :)</p>
             <div class="gift">🎁</div>
         </div>
 
         <div class="video-container">
             <iframe width="100%" height="80" 
                 src="https://www.youtube.com/embed/Ne3uIrZaWUY?si=6rqhFg06f79vngfq&playsinline=1" 
-                title="Sezen Aksu" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
             </iframe>
         </div>
@@ -96,7 +94,6 @@
             no.style.position = 'fixed';
             no.style.left = Math.max(10, Math.random() * maxX) + 'px';
             no.style.top = Math.max(10, Math.random() * maxY) + 'px';
-            no.style.zIndex = '1000';
         };
 
         no.addEventListener('touchstart', (e) => { e.preventDefault(); move(); });
