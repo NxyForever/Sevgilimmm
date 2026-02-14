@@ -9,42 +9,39 @@
         body { 
             margin: 0; padding: 0; min-height: 100vh; 
             display: flex; justify-content: center; align-items: center; 
-            background-color: #ffccd5; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             overflow-y: auto; padding-top: 20px; padding-bottom: 20px;
+            
+            /* ARKA PLAN FOTOĞRAFI AYARLARI */
+            /* Fotoğrafın üzerine hafif karanlık bir filtre atar ki kart okunsun */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('IMG_3163.jpeg');
+            background-size: cover;      /* Tüm ekranı kapla */
+            background-position: center; /* Ortala */
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Kaydırırken arka plan sabit kalsın */
         }
         .card { 
-            background: white; padding: 25px; border-radius: 30px; 
-            box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2); 
+            background: rgba(255, 255, 255, 0.95); /* Hafif saydam beyaz kart */
+            padding: 30px; 
+            border-radius: 30px; 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3); 
             text-align: center; width: 85%; max-width: 400px; 
             position: relative; z-index: 10;
             margin: auto;
+            backdrop-filter: blur(5px); /* Kartın arkasını hafif bulanıklaştır */
         }
-        h1 { color: #d63384; font-size: 24px; line-height: 1.3; margin-bottom: 15px; }
-        p { color: #666; font-size: 16px; font-style: italic; margin-bottom: 20px; }
-        .btns { display: flex; justify-content: center; gap: 20px; height: 50px; position: relative; margin-bottom: 20px;}
-        button { padding: 12px 25px; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; }
-        #yesBtn { background-color: #ff4d6d; color: white; }
-        #noBtn { background-color: #e9ecef; color: #495057; position: absolute; left: 55%; transition: 0.1s; }
+        h1 { color: #d63384; font-size: 26px; line-height: 1.3; margin-bottom: 20px; }
+        p { color: #555; font-size: 18px; font-style: italic; margin-bottom: 25px; }
+        .btns { display: flex; justify-content: center; gap: 20px; height: 50px; position: relative; margin-bottom: 25px;}
+        button { padding: 12px 30px; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.2s; }
+        button:active { transform: scale(0.95); }
+        #yesBtn { background-color: #ff4d6d; color: white; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); }
+        #noBtn { background-color: #e9ecef; color: #495057; position: absolute; left: 55%; transition: 0.3s ease; }
         #success { display: none; padding-bottom: 20px; }
-        .gift { font-size: 50px; margin-top: 20px; }
+        .gift { font-size: 60px; margin-top: 20px; }
         
         /* Video Alanı */
-        .video-container { margin-top: 20px; border-radius: 15px; overflow: hidden; height: 100px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        
-        /* FOTOĞRAF ALANI - DÜZELTİLDİ */
-        .photo-container {
-            margin-bottom: 20px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            /* Yükseklik sınırı kaldırıldı, fotoğraf tam görünecek */
-        }
-        .photo-container img {
-            width: 100%;
-            height: auto; /* Orantılı şekilde büyü/küçül */
-            display: block;
-        }
+        .video-container { margin-top: 25px; border-radius: 15px; overflow: hidden; height: 100px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
 <body>
@@ -52,11 +49,6 @@
     <div class="card">
         <div id="ask">
             <h1>Nilayımmmmmmm 💐</h1>
-            
-            <div class="photo-container">
-                <img src="IMG_3163.jpeg" alt="Bizim Fotoğrafımız">
-            </div>
-
             <p>Sevgililer Gününü beraber kutlayalım mı...? 🎀</p>
             <div class="btns">
                 <button id="yesBtn">Evet</button>
@@ -86,20 +78,22 @@
         const ask = document.getElementById('ask');
         const success = document.getElementById('success');
 
-        // Hayır butonu kaçma mantığı (Daha uzağa kaçması için güncellendi)
+        // Hayır butonu kaçma mantığı
         const move = () => {
-            // Butonun kaçabileceği güvenli alan hesabı
-            const cardRect = document.querySelector('.card').getBoundingClientRect();
-            const noBtnRect = no.getBoundingClientRect();
+            const card = document.querySelector('.card');
             
-            // Ekran sınırları içinde rastgele bir yer
-            const newX = Math.random() * (window.innerWidth - noBtnRect.width);
-            const newY = Math.random() * (window.innerHeight - noBtnRect.height);
+            // Ekran sınırları içinde rastgele bir yer belirle
+            // Butonun kartın üzerine gelmemesi için biraz daha geniş alan bırakıyoruz
+            const maxX = window.innerWidth - no.offsetWidth - 20;
+            const maxY = window.innerHeight - no.offsetHeight - 20;
+
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
 
             no.style.position = 'fixed';
-            no.style.left = newX + 'px';
-            no.style.top = newY + 'px';
-            no.style.zIndex = '1000'; // Kartın üstüne çıkabilsin
+            no.style.left = Math.max(10, newX) + 'px';
+            no.style.top = Math.max(10, newY) + 'px';
+            no.style.zIndex = '1000'; // Kartın üstünde görünsün
         };
 
         no.addEventListener('touchstart', (e) => { e.preventDefault(); move(); });
@@ -131,3 +125,4 @@
     </script>
 </body>
 </html>
+
