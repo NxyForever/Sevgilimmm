@@ -11,29 +11,40 @@
             display: flex; justify-content: center; align-items: center; 
             background-color: #ffccd5; 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            overflow-y: auto;
+            overflow-y: auto; padding-top: 20px; padding-bottom: 20px;
         }
         .card { 
             background: white; padding: 25px; border-radius: 30px; 
             box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2); 
             text-align: center; width: 85%; max-width: 400px; 
             position: relative; z-index: 10;
-            margin: 20px 0;
+            margin: auto;
         }
-        h1 { color: #d63384; font-size: 24px; line-height: 1.3; margin-bottom: 10px; }
-        p { color: #666; font-size: 16px; font-style: italic; margin-bottom: 15px; }
-        .btns { display: flex; justify-content: center; gap: 20px; height: 50px; position: relative; margin-bottom: 15px;}
-        button { padding: 10px 20px; border: none; border-radius: 50px; font-size: 15px; font-weight: bold; cursor: pointer; }
+        h1 { color: #d63384; font-size: 24px; line-height: 1.3; margin-bottom: 15px; }
+        p { color: #666; font-size: 16px; font-style: italic; margin-bottom: 20px; }
+        .btns { display: flex; justify-content: center; gap: 20px; height: 50px; position: relative; margin-bottom: 20px;}
+        button { padding: 12px 25px; border: none; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; }
         #yesBtn { background-color: #ff4d6d; color: white; }
         #noBtn { background-color: #e9ecef; color: #495057; position: absolute; left: 55%; transition: 0.1s; }
-        #success { display: none; }
-        .gift { font-size: 40px; margin-top: 10px; }
-        .video-container { margin-top: 15px; border-radius: 15px; overflow: hidden; height: 100px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        #success { display: none; padding-bottom: 20px; }
+        .gift { font-size: 50px; margin-top: 20px; }
+        
+        /* Video Alanı */
+        .video-container { margin-top: 20px; border-radius: 15px; overflow: hidden; height: 100px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        
+        /* FOTOĞRAF ALANI - DÜZELTİLDİ */
         .photo-container {
-            margin-bottom: 15px; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15); max-height: 250px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            /* Yükseklik sınırı kaldırıldı, fotoğraf tam görünecek */
         }
-        .photo-container img { width: 100%; height: auto; display: block; object-fit: cover; object-position: center; }
+        .photo-container img {
+            width: 100%;
+            height: auto; /* Orantılı şekilde büyü/küçül */
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -75,12 +86,20 @@
         const ask = document.getElementById('ask');
         const success = document.getElementById('success');
 
+        // Hayır butonu kaçma mantığı (Daha uzağa kaçması için güncellendi)
         const move = () => {
-            const x = Math.random() * (window.innerWidth - no.clientWidth - 50);
-            const y = Math.random() * (window.innerHeight - no.clientHeight - 50);
+            // Butonun kaçabileceği güvenli alan hesabı
+            const cardRect = document.querySelector('.card').getBoundingClientRect();
+            const noBtnRect = no.getBoundingClientRect();
+            
+            // Ekran sınırları içinde rastgele bir yer
+            const newX = Math.random() * (window.innerWidth - noBtnRect.width);
+            const newY = Math.random() * (window.innerHeight - noBtnRect.height);
+
             no.style.position = 'fixed';
-            no.style.left = Math.max(0, x) + 'px';
-            no.style.top = Math.max(0, y) + 'px';
+            no.style.left = newX + 'px';
+            no.style.top = newY + 'px';
+            no.style.zIndex = '1000'; // Kartın üstüne çıkabilsin
         };
 
         no.addEventListener('touchstart', (e) => { e.preventDefault(); move(); });
